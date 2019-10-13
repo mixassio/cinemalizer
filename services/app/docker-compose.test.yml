@@ -1,0 +1,17 @@
+version: '2'
+services:
+  db:
+    image: postgres:11.1
+    volumes:
+      - "./config/init.sql:/docker-entrypoint-initdb.d/init.sql"
+      - pgdata:/var/lib/postgresql/data
+  sut:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    env_file: ".env"
+    command: npm test
+    depends_on:
+      - db
+volumes:
+  pgdata:

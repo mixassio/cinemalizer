@@ -1,0 +1,4 @@
+---
+connect_db: "postgresql://postgres@db/mixassio"
+app_port: 3000
+current_env: "development"
