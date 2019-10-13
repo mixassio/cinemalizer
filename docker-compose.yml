@@ -4,11 +4,11 @@ services:
   db:
     image: postgres:11.1
     volumes:
-      - "./services/app/config/init.sql:/docker-entrypoint-initdb.d/init.sql"
+      - "./services/cinema-api/config/init.sql:/docker-entrypoint-initdb.d/init.sql"
       - pgdata2:/var/lib/postgresql/data
-  app:
+  api:
     build:
-      context: services/app
+      context: services/cinema-api
       dockerfile: Dockerfile.development
     command: sh -c "npm run start"
     env_file: ".env"
@@ -18,7 +18,7 @@ services:
       - db
     volumes:
       - "~/.bash_history:/.bash_history"
-      - "./services/app:/usr/src/app:cached"
+      - "./services/cinema-api:/usr/src/app:cached"
       - "/tmp:/tmp:delegated"
   web:
     build:
@@ -29,7 +29,7 @@ services:
     volumes:
       - "./services/nginx/myConfig.conf:/etc/nginx/conf.d/default.conf"
     depends_on:
-      - app
+      - api
 
 volumes:
   pgdata2:
