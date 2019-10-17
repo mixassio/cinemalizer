@@ -1,23 +1,24 @@
-const Hapi = require('@hapi/hapi');
+const express = require("express");
+const models = require('./models');
+const apiRoutes = require('./routes_api');
 
-const init = async () => {
-  const server = Hapi.server({
-    port: 3000,
-    host: '0.0.0.0',
-  });
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: () => 'Hello World!',
-  });
+const app = express();
 
-  await server.start();
-  console.log('Server running on %s', server.info.uri);
-};
 
-process.on('unhandledRejection', (err) => {
-  console.log(err);
-  process.exit(1);
+app.get("/", async (req, res) => {
+  const { User } = models;
+  const user = User.build('mixassio@mail.ru');
+  try {
+    await user.save();
+    const users = await User.findAll();
+    res.status(200).json({ message: `Hello, World! count: ${users.length}` }).end();
+  } catch (e) {
+    res.status(401).json({ message: e }).end();
+    console.error(e);
+  }
 });
 
-init();
+app.use('/v1', apiRoutes)
+
+
+app.listen(3000, () => console.log("App listening on port 3000!"));

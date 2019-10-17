@@ -7,24 +7,26 @@
         "testEnvironment": "node"
     },
     "scripts": {
-        "test": "jest",
+        "test": "DATABASE_URL=postgresql://postgres@db/mixassio jest",
         "sequelize": "sequelize",
         "nodemon": "nodemon",
-        "start": "npx nodemon app.js"
+        "start": "DEBUG=express:* npx nodemon app.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@hapi/hapi": "^18.4.0",
-        "sequelize": "^5.16.0",
-        "sequelize-cli": "^5.5.0",
-        "pg": "^7.12.1"
+        "debug": "^4.1.1",
+        "express": "^4.17.1",
+        "pg": "^7.12.1",
+        "sequelize": "^5.19.6",
+        "sequelize-cli": "^5.5.1"
     },
     "devDependencies": {
-        "jest": "^23.6.0",
-        "jest-cli": "^23.6.0",
-        "jest-supertest-matchers": "0.0.1",
-        "supertest": "^3.3.0",
-        "nodemon": "^1.19.1"
+        "jest": "^24.9.0",
+        "jest-cli": "^24.9.0",
+        "jest-supertest-matchers": "0.0.2",
+        "supertest": "^4.0.2",
+        "nodemon": "^1.19.4"
     }
 }

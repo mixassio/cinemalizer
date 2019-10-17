@@ -6,6 +6,13 @@ services:
     volumes:
       - "./services/cinema-api/config/init.sql:/docker-entrypoint-initdb.d/init.sql"
       - pgdata2:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    depends_on:
+      - db
   api:
     build:
       context: services/cinema-api

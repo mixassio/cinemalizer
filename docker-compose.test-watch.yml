@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  api-test:
+    build:
+      context: services/cinema-api
+      dockerfile: Dockerfile.development
+    command: sh -c "npx jest --watchAll"
+    env_file: ".env"
+    ports:
+     - "3001:3000"
+    volumes:
+      - "~/.bash_history:/.bash_history"
+      - "./services/cinema-api:/usr/src/app:cached"
+      - "/tmp:/tmp:delegated"
