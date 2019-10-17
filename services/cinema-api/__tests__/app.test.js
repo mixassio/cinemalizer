@@ -1,12 +1,13 @@
 
-const app = require('../app.js');
-const db = require('../models');
+const solution = require('../index.js');
 
-describe('first test', () => {
-  it('simple test',  () => {
-    expect(1).toBe(1);
-  });
-  it('simple  2 test',  () => {
-    expect(1).toBe(1);
+const request = require('supertest');
+const matchers = require('jest-supertest-matchers');
+
+describe('requests', () => {
+  it('GET /', async () => {
+    const res = await request(solution())
+      .get('/');
+    expect(res.status).toEqual(200);
   });
 });
