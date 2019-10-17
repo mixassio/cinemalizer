@@ -7,10 +7,10 @@
         "testEnvironment": "node"
     },
     "scripts": {
-        "test": "DATABASE_URL=postgresql://postgres@db/mixassio jest",
+        "test": "DATABASE_URL=postgresql://postgres@db/mixassio jest --color",
         "sequelize": "sequelize",
         "nodemon": "nodemon",
-        "start": "DEBUG=express:* npx nodemon bin/server.js"
+        "start": "DEBUG=express:* npx nodemon bin/server.js  --color"
     },
     "author": "",
     "license": "ISC",
