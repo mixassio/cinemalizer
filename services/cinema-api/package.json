@@ -15,7 +15,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@hapi/hapi": "^18.4.0",
+        "@hapi/hapi": "^19.1.1",
         "debug": "^4.1.1",
         "express": "^4.17.1",
         "pg": "^7.12.1",
